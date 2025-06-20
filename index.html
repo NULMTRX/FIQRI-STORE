@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIQRI Store</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #0d1b2a;
+      color: #ffffff;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+    }
+
+    .banner {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      filter: brightness(60%);
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #00aaff;
+      position: absolute;
+      top: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      object-fit: cover;
+    }
+
+    .title {
+      margin-top: 80px;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .title h1 {
+      margin: 0;
+      color: #00ccff;
+    }
+
+    .title p {
+      margin: 0.5rem 0 1rem;
+      color: #ccc;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 2rem;
+    }
+
+    .product-card {
+      background-color: #14213d;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 170, 255, 0.2);
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      margin: 0.5rem 0;
+      color: #00ccff;
+    }
+
+    .product-card p {
+      color: #bbb;
+    }
+
+    .product-card button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+      transition: 0.3s;
+    }
+
+    .product-card button:hover {
+      background-color: #008ecc;
+    }
+
+    #product-detail {
+      display: none;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    #product-detail img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    #product-detail h2 {
+      color: #00ccff;
+      margin-top: 1rem;
+    }
+
+    #product-detail p {
+      color: #bbb;
+      margin-top: 0.5rem;
+    }
+
+    #product-detail button {
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-beli {
+      background-color: #00aaff;
+      color: white;
+    }
+
+    .btn-kembali {
+      background-color: #444;
+      color: white;
+    }
+
+    footer {
+      background-color: #06131e;
+      color: #888;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img class="banner" src="banner.jpg" alt="Banner">
+    <img class="profile-pic" src="FIQRI.jpg" alt="Profil Fiqri">
+  </header>
+
+  <!-- Judul -->
+  <section class="title">
+    <h1>FIQRI Store</h1>
+    <p>Toko alat eksperimen & elektronik - by FIQRI</p>
+  </section>
+
+  <!-- Menu Produk -->
+  <main class="product-container" id="product-container">
+    <!-- Diisi lewat JS -->
+  </main>
+
+  <!-- Detail Produk -->
+  <div id="product-detail">
+    <img id="detail-image" src="" alt="Gambar Produk">
+    <h2 id="detail-name"></h2>
+    <p id="detail-description">Deskripsi produk akan ditampilkan di sini.</p>
+    <p id="detail-price" style="font-weight: bold;"></p>
+    <button class="btn-beli" onclick="beliSekarang()">Beli</button>
+    <button class="btn-kembali" onclick="kembaliKeMenu()">Kembali</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 FIQRI Store - Powered by NULMTRX</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const products = [
+      {
+        name: "nRF-BOX",
+        price: "Rp450.000",
+        thumb: "nrf.jpg",
+        image: "nRF-BOX.jpg",
+        description: "nRF-BOX adalah firmware open-source yang dibuat untuk ESP32 dengan modul NRF24L01, bertujuan menjadi toolkit nirkabel 2.4GHz multifungsi. Firmware ini dirancang agar satu perangkat bisa melakukan berbagai fungsi seperti scanning, jamming, spoofing, dan analisis sinyal di spektrum 2.4GHz (yang digunakan oleh Wi-Fi, Bluetooth, dan NRF)."
+      },
+      {
+        name: "blue jammer",
+        price: "233.000",
+        thumb: "blue.jpg",
+        image: "jammer.jpg",
+        description: "Bluetooth Jammer adalah perangkat yang bertujuan mengganggu komunikasi antara perangkat Bluetooth, seperti headset, speaker, HP, smartwatch, dll."
+      },
+      {
+        name: "deauther esp8266",
+        price: "Rp58.000",
+        thumb: "deauth.jpg",
+        image: "deauther.jpg",
+        description: "Deauther ESP8266 adalah sebuah firmware khusus yang dibuat untuk mikrokontroler ESP8266. Fungsinya adalah untuk menjalankan serangan Wi-Fi dengan cara menyalahgunakan fitur standar dalam protokol Wi-Fi 802.11, khususnya paket deauthentication."
+      },
+      {
+        name: "deauther OLED",
+        price: "Rp97.000",
+        thumb: "teks.jpg",
+        image: "OLED.jpg",
+        description: "Deauther OLED adalah sebuah proyek berbasis ESP8266 (seperti Wemos D1 Mini atau NodeMCU) yang digunakan untuk melakukan serangan Wi-Fi (seperti Deauthentication Attack) dan menggunakan layar OLED kecil (biasanya ukuran 0.66 atau 0.96) sebagai tampilan status dan navigasi menu."
+      }
+    ];
+
+    const container = document.getElementById("product-container");
+    const detailView = document.getElementById("product-detail");
+    const detailImage = document.getElementById("detail-image");
+    const detailName = document.getElementById("detail-name");
+    const detailDesc = document.getElementById("detail-description");
+    const detailPrice = document.getElementById("detail-price");
+
+    let produkDipilih = null;
+
+    products.forEach((product, index) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.thumb}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.price}</p>
+        <button onclick="lihatProduk(${index})">Lihat</button>
+      `;
+      container.appendChild(card);
+    });
+
+    function lihatProduk(index) {
+      const product = products[index];
+      produkDipilih = product;
+      detailImage.src = product.image;
+      detailName.innerText = product.name;
+      detailDesc.innerText = product.description;
+      detailPrice.innerText = product.price;
+
+      container.style.display = "none";
+      detailView.style.display = "block";
+    }
+
+    function beliSekarang() {
+      const noWa = '6285215535939';
+      const pesan = `Halo, saya mau beli ${encodeURIComponent(produkDipilih.name)}`;
+      window.open(`https://wa.me/${noWa}?text=${pesan}`, '_blank');
+    }
+
+    function kembaliKeMenu() {
+      detailView.style.display = "none";
+      container.style.display = "grid";
+    }
+  </script>
+
+</body>
+</html>
